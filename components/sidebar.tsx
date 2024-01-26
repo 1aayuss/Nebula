@@ -1,14 +1,11 @@
 "use client";
 import React from 'react'
 import { usePathname } from "next/navigation";
-import { Montserrat } from 'next/font/google'
-
 import { cn } from "@/lib/utils";
 import Logo from './logo';
 import { Code2, Home, ImageIcon, MessagesSquare, MusicIcon, Settings, VideoIcon } from 'lucide-react';
 import Link from 'next/link';
 
-const poppins = Montserrat({ weight: '600', subsets: ['latin'] })
 
 export const Sidebar = () => {
     const pathname = usePathname();
