@@ -1,18 +1,21 @@
 import Navbar from '@/components/navbar'
-import {Sidebar} from '@/components/sidebar'
+import { Sidebar } from '@/components/sidebar'
 import React from 'react'
 
 const Dashboardlayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className='h-full relative'>
+        <div className='h-full relative color bg-[#111827] overflow-hidden'>
             <div className='hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[80] bg-gray-900'>
-                <Sidebar></Sidebar>
+                <Sidebar />
             </div>
-            <main className='md:pl-72'>
-                <Navbar />
-                {children}
-            </main>
+            <div className='h-screen md:ml-72 overflow-auto bg-white border-2 md:rounded-3xl md:border-white'>
+                <main>
+                    <Navbar />
+                    {children}
+                </main>
+            </div>
         </div>
+
     )
 }
 

@@ -8,8 +8,8 @@ const montserrat = Montserrat({ weight: "600", subsets: ["latin"] })
 const Logo = () => {
     return (
         <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-            <div className="relative h-8 w-8 mr-4">
-                <Image fill alt="Logo" src="/logo.svg" />
+            <div className="relative h-8 w-8 mr-2">
+                <Image fill alt="Logo" src="/Circle.svg" />
             </div>
             <h1 className={cn("text-white text-2xl font-bold", montserrat.className)}>
                 Nebula

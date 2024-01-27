@@ -1,10 +1,9 @@
 "use client"
-
+import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Code2, Home, ImageIcon, MessagesSquare, MusicIcon, Settings, VideoIcon } from 'lucide-react';
 import { MessageSquare, ArrowRight } from "lucide-react";
-
 const tools = [
     {
         label: "Conversation",
@@ -16,35 +15,36 @@ const tools = [
     {
         label: "Image Generation",
         icon: ImageIcon,
-        color: "text-violet-500",
+        color: "text-red-500",
         bgColor: "bg-violet-500/10",
-        href: "/conversation"
+        href: "/image"
     },
     {
         label: "Video Generation",
         icon: VideoIcon,
         color: "text-violet-500",
         bgColor: "bg-violet-500/10",
-        href: "/conversation"
+        href: "/video"
     },
     {
         label: "Music Generation",
         icon: MusicIcon,
         color: "text-violet-500",
         bgColor: "bg-violet-500/10",
-        href: "/conversation"
+        href: "/music"
     },
     {
         label: "Code Generation",
         icon: Code2,
         color: "text-violet-500",
         bgColor: "bg-violet-500/10",
-        href: "/conversation"
+        href: "/code"
     },
 
 ]
 
 export default function DashboardPage() {
+    const router = useRouter();
     return (
         <>
             <div className="mb-8 space-y-4">
@@ -61,6 +61,7 @@ export default function DashboardPage() {
                 {
                     tools.map((tool) => (
                         <Card
+                            onClick={() => router.push(tool.href)}
                             key={tool.href}
                             className="p-4 border-black/5 flex items-center justify-between hover:shadow-md transition cursor-pointer"
                         >
