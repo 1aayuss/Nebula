@@ -81,7 +81,7 @@ const CodePage = () => {
                 iconColor='text-green-700'
                 bgColor='bg-green-700/10'
             />
-            <div className='px-4 lg:px-8 border-2 '>
+            <div className='px-4 lg:px-8'>
 
                 <div>
                     <Form {...form}>
@@ -122,7 +122,7 @@ const CodePage = () => {
                     }
                     {messages.length === 0 && !isLoading && (
                         <div>
-                            <Empty label="No conversation started" />
+                            <Empty />
                         </div>
                     )}
 

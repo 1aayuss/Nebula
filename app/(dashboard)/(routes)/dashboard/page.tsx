@@ -49,10 +49,12 @@ export default function DashboardPage() {
         <>
             <div className="mb-8 space-y-4">
                 <h2 className="text-2xl md:text-4xl font-bold text-center">
-                    Expolore the Power of AI
+                    Explore the universe of AI
                 </h2>
                 <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-                    Chat with the smartest AI - Experience the power of AI
+                    {/* Chat with the smartest AI - Experience the power of AI */}
+                    Dive into AI's endless horizons - Experience the power of AI
+                    {/* Explore Infinite Possibilities with Nebula's AI Constellation." */}
                 </p>
             </div>
 
