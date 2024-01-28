@@ -24,12 +24,9 @@ const Heading = ({ title, description, icon: Icon, iconColor, bgColor }: Heading
 
                 <h1 className='text-xl md:text-4xl font-bold'>{title}</h1>
 
-                <div className='relative h-6 w-28 mt-1 '>
-                    <Link href="https://openai.com/">
-                        <Image fill alt="Logo" src="/OpenAI_Light.svg" />
-
-                    </Link>
-                </div>
+                <Link href="https://replicate.com/">
+                    <p className='text-sm text-muted-foreground'>Powered by Replicate</p>
+                </Link>
             </div>
         </div>
 

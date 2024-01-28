@@ -2,7 +2,7 @@
 import axios from "axios"
 import * as z from "zod"
 import React, { useState } from 'react'
-import Heading from '@/components/heading'
+import Heading from '@/components/heading2'
 import { useRouter } from "next/navigation";
 import { MessageSquare, MusicIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'

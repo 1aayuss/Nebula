@@ -60,7 +60,7 @@ const ImagePage = () => {
     return (
         <div className="">
             <Heading
-                title="Image generation"
+                title="Image Generation"
                 description='Turn your propmpt into sn image'
                 icon={ImageIcon}
                 iconColor='text-pink-700'

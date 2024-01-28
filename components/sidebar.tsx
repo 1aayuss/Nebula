@@ -57,9 +57,9 @@ export const Sidebar = () => {
 
     return (
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] ">
-            <div className="px-3 py-2 ">
+            <div className="px-3 py-2">
                 <Logo />
-                <div className="space-y-1">
+                <div className="space-y-1 pl-1">
                     {routes.map((route) => (
                         <Link
                             key={route.href}

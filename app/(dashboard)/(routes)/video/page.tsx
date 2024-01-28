@@ -2,7 +2,7 @@
 import axios from "axios"
 import * as z from "zod"
 import React, { useState } from 'react'
-import Heading from '@/components/heading'
+import Heading from '@/components/heading2'
 import { useRouter } from "next/navigation";
 import { MessageSquare, MusicIcon, VideoIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
@@ -53,7 +53,7 @@ const VideoPage = () => {
     return (
         <div className="">
             <Heading
-                title="video Generation"
+                title="Video Generation"
                 description='Turn your prompt into video.'
                 icon={VideoIcon}
                 iconColor='text-orange-500'

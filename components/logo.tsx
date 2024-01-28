@@ -7,7 +7,7 @@ import { Montserrat } from "next/font/google"
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] })
 const Logo = () => {
     return (
-        <Link href="/dashboard" className="flex items-center pl-3 mb-14">
+        <Link href="/dashboard" className="flex items-center pl-3 mb-6">
             <div className="relative h-8 w-8 mr-2">
                 <Image fill alt="Logo" src="/Circle.svg" />
             </div>

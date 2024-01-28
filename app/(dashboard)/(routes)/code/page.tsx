@@ -126,7 +126,7 @@ const CodePage = () => {
                         </div>
                     )}
 
-                    <div className="flex flex-col-reverse gap-y-4 border-2 border-red-700">
+                    <div className="flex flex-col-reverse gap-y-4">
                         {messages.map((msg) => (
                             <div key={JSON.stringify(msg.content)}
                                 className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg", msg.role === "user" ? "bg-white-border border-black/10" : "bg - muted")}
