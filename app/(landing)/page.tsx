@@ -11,11 +11,12 @@ export default function LandingPAge() {
                         Login
                     </Button>
                 </Link>
-                <Link href="/sign-up">
-                    <Button>
+                <Button>
+                    <Link href="/sign-up">
                         Register
-                    </Button>
-                </Link>
+                    </Link>
+
+                </Button>
 
             </div>
         </>
