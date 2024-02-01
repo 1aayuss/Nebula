@@ -2,8 +2,7 @@
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Code2, Home, ImageIcon, MessagesSquare, MusicIcon, Settings, VideoIcon } from 'lucide-react';
-import { MessageSquare, ArrowRight } from "lucide-react";
+import { Code2, Home, ImageIcon, MusicIcon, Settings, VideoIcon, MessageSquare, ArrowRight } from 'lucide-react';
 const tools = [
     {
         label: "Conversation",

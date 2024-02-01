@@ -6,12 +6,15 @@ import { Button } from '@/components/ui/button';
 import { MAX_FREE_COUNTS } from '@/constants';
 import { Rocket } from 'lucide-react';
 import { PremiumButton } from '@/components/premium-button';
+import { useProModel } from '@/hooks/use-pro-model';
 
 interface FreeCounterProps {
     apiLimitCount: number;
 };
 
 export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+    const proModel = useProModel();
+
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -33,7 +36,6 @@ export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
                         <Progress className='h-2' value={(apiLimitCount / MAX_FREE_COUNTS) * 100} />
                     </div>
                     <PremiumButton />
-
                 </CardContent>
 
             </Card>
