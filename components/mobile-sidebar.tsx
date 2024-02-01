@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 interface MobileSidebarProps {
     apiLimitCount: number;
 }
-const MobileSidebar = ({ apiLimitCount = 0 }: MobileSidebarProps) => {
+const MobileSidebar = ({ apiLimitCount }: MobileSidebarProps) => {
 
     // ! Important
     const [isMounted, setIsMounted] = useState(false);

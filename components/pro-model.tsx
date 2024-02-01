@@ -85,7 +85,7 @@ export const ProModel = () => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="h-10 w-10 border-0 focus:outline-0 focus-visible:ring-0 "
+                                className="h-8 w-8 border rounded-full focus:border-0 focus:outline-0 focus-visible:ring-0"
                                 onClick={() => onClick(-1)}
                                 disabled={goal === 0}
                             >
@@ -112,7 +112,7 @@ export const ProModel = () => {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="h-10 w-10 border-0 focus:outline-0 focus-visible:ring-0"
+                                className="h-8 w-8 border rounded-full focus:border-0 focus:outline-0 focus-visible:ring-0"
                                 onClick={() => onClick(1)}
                                 disabled={goal >= 400}
                             >
@@ -125,7 +125,7 @@ export const ProModel = () => {
                     <DialogFooter className='mt-6'>
 
                         <DialogClose asChild className=''>
-                            <Button variant="outline">Cancel</Button>
+                            <Button className='border-2 bg-white text-black hover:bg-black/10 '>Cancel</Button>
                         </DialogClose>
                         <Button className='w-full' disabled={goal < 1}>Continue</Button>
 

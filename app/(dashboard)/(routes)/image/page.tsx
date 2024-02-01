@@ -18,8 +18,10 @@ import { cn } from "@/lib/utils"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardFooter } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useProModel } from "@/hooks/use-pro-model"
 
 const ImagePage = () => {
+    const proModel = useProModel();
     const router = useRouter();
     const [images, setImages] = useState<string[]>([]);
 
@@ -47,7 +49,9 @@ const ImagePage = () => {
 
         } catch (error: any) {
 
-            // todo : Open Pro Model
+            if (error?.response?.status === 403) {
+                proModel.onOpen();
+            }
             console.log(error);
 
         } finally {

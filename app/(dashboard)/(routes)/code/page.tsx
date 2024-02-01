@@ -18,6 +18,7 @@ import { Loader } from "@/components/loader"
 import { cn } from "@/lib/utils"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
+import { useProModel } from "@/hooks/use-pro-model"
 
 function renderChatContentPart(part: ChatCompletionContentPart): string {
     if (typeof part === "string") {
@@ -31,6 +32,7 @@ function renderChatContentPart(part: ChatCompletionContentPart): string {
 }
 
 const CodePage = () => {
+    const proModel = useProModel();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
 
@@ -61,7 +63,9 @@ const CodePage = () => {
 
         } catch (error: any) {
 
-            // todo : Open Pro Model
+            if (error?.response?.status === 403) {
+                proModel.onOpen();
+            }
             console.log(error);
 
         } finally {

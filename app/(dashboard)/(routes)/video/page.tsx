@@ -14,8 +14,10 @@ import { Button } from "@/components/ui/button"
 import { Empty } from "@/components/empty"
 import { Loader } from "@/components/loader"
 import { cn } from "@/lib/utils"
+import { useProModel } from "@/hooks/use-pro-model"
 
 const VideoPage = () => {
+    const proModel = useProModel();
     const router = useRouter();
     const [video, setVideo] = useState<string>();
 
@@ -39,7 +41,9 @@ const VideoPage = () => {
 
         } catch (error: any) {
 
-            // todo : Open Pro Model
+            if (error?.response?.status === 403) {
+                proModel.onOpen();
+            }
             console.log(error);
 
         } finally {
