@@ -3,7 +3,7 @@ import React from 'react'
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Logo from './logo';
-import { Code2, Home, ImageIcon, MessagesSquare, MusicIcon, Settings, VideoIcon } from 'lucide-react';
+import { Code2, Home, ImageIcon, MessagesSquare, MusicIcon, Settings, VideoIcon, CircleUserRound } from 'lucide-react';
 import Link from 'next/link';
 import { FreeCounter } from '@/components/free-counter';
 
@@ -51,10 +51,10 @@ export const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
             color: "text-green-400"
         },
         {
-            label: 'Settings',
-            icon: Settings,
+            label: 'Account',
+            icon: CircleUserRound,
             href: '/settings',
-            color: "text-white"
+            color: "text-slate-100"
         }
     ];
 
