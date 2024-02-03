@@ -1,69 +1,69 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useProModel } from '@/hooks/use-pro-model'
 import { Card } from '@/components/ui/card';
-import { Code2, ImageIcon, MusicIcon, VideoIcon, MessageSquare, Check, Zap, Rocket, MinusIcon, PlusIcon, Goal } from 'lucide-react';
+import { Code2, ImageIcon, MusicIcon, VideoIcon, MessageSquare, Check, Zap, Rocket, MinusIcon, PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { number } from 'zod';
 import Image from 'next/image';
 import { Value } from '@radix-ui/react-select';
 import Logo from './logo';
+import axios from 'axios';
 
-const tools = [
-    {
-        label: "Conversation",
-        icon: MessageSquare,
-        color: "text-violet-500",
-        bgColor: "bg-violet-500/10",
-    },
-    {
-        label: "Image Generation",
-        icon: ImageIcon,
-        color: "text-red-500",
-        bgColor: "bg-violet-500/10",
-    },
-    {
-        label: "Video Generation",
-        icon: VideoIcon,
-        color: "text-violet-500",
-        bgColor: "bg-violet-500/10",
-    },
-    {
-        label: "Music Generation",
-        icon: MusicIcon,
-        color: "text-violet-500",
-        bgColor: "bg-violet-500/10",
-    },
-    {
-        label: "Code Generation",
-        icon: Code2,
-        color: "text-violet-500",
-        bgColor: "bg-violet-500/10",
-    },
-
-]
 export const ProModel = () => {
 
     const proModel = useProModel();
-    const [goal, setGoal] = React.useState(1)
+    const [loading, setLoading] = useState(false);
+    const [quantity, setQuantity] = React.useState(1)
+    const [credits, setCredits] = React.useState(0);
+    const [cost, setCost] = React.useState(0);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
+    useEffect(() => {
+        const newCredits = Math.max(quantity * 10, 0);
+        const newCost = Math.max((quantity * 10) * 5 - 1, 0);
+
+        setCredits(newCredits);
+        setCost(newCost);
+
+        if (inputRef.current) {
+            inputRef.current.blur();
+        }
+    }, [quantity]);
+
     function onClick(adjustment: number) {
-        setGoal((prev) => prev + adjustment)
+        setQuantity((prev) => Math.max(prev + adjustment, 0));
     }
+
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.blur();
         }
     }, []);
 
+    const onSubscribe = async () => {
+        try {
+            setLoading(true);
+
+            const response = await axios.post('/api/stripe', {
+                quantity: quantity
+            });
+
+
+            window.location.href = response.data.url;
+        } catch (error) {
+            console.log(error, "STRIPE_CLIENT_ERROR");
+        } finally {
+            setLoading(false);
+        }
+    }
     return (
         <Dialog open={proModel.isOpen} onOpenChange={proModel.onClose}>
             <DialogContent className=' w-full'>
                 <div className="mx-auto w-full max-w-lg">
                     <DialogHeader>
-                        <DialogTitle>Buy credits</DialogTitle>
+                        <DialogTitle>Buy quantitys</DialogTitle>
                     </DialogHeader>
 
                     <div className="p-4 pb-0 space-y-4 flex flex-col items-center justify-center">
@@ -75,11 +75,11 @@ export const ProModel = () => {
                         </div>
 
                         <div className='text-bold'>
-                            {Math.max(goal * 10, 0)} Credits
+                            {credits} credits
                         </div>
 
                         <div>
-                            {Math.max(goal * 10 * 5 - 1, 0)} Rs.
+                            {cost} Rs.
                         </div>
                         <div className="flex items-center justify-center space-x-4 ">
                             <Button
@@ -87,7 +87,7 @@ export const ProModel = () => {
                                 size="icon"
                                 className="h-8 w-8 border rounded-full focus:border-0 focus:outline-0 focus-visible:ring-0"
                                 onClick={() => onClick(-1)}
-                                disabled={goal === 0}
+                                disabled={quantity === 0}
                             >
                                 <MinusIcon className="h-4 w-4" />
                                 <span className="sr-only">Decrease</span>
@@ -101,10 +101,10 @@ export const ProModel = () => {
                                 aria-describedby="helper-text-explanation"
                                 className="flex-2 p-2 text-center w-11 text-md font-bold tracking-tighter border-2 rounded-lg"
 
-                                value={goal}
+                                value={quantity}
                                 onInput={(e) => {
                                     const value: any = parseInt((e.target as HTMLInputElement).value, 10);
-                                    setGoal(value !== 0 && !isNaN(value) ? value : 1);
+                                    setQuantity(value !== 0 && !isNaN(value) ? value : 1);
                                 }}
                                 required
                             />
@@ -114,7 +114,7 @@ export const ProModel = () => {
                                 size="icon"
                                 className="h-8 w-8 border rounded-full focus:border-0 focus:outline-0 focus-visible:ring-0"
                                 onClick={() => onClick(1)}
-                                disabled={goal >= 400}
+                                disabled={quantity >= 400}
                             >
                                 <PlusIcon className="h-4 w-4" />
                                 <span className="sr-only">Increase</span>
@@ -127,7 +127,7 @@ export const ProModel = () => {
                         <DialogClose asChild className=''>
                             <Button className='border-2 bg-white text-black hover:bg-black/10 '>Cancel</Button>
                         </DialogClose>
-                        <Button className='w-full' disabled={goal < 1}>Continue</Button>
+                        <Button onClick={onSubscribe} className='w-full' disabled={quantity < 1}>Continue</Button>
 
                     </DialogFooter>
                 </div>

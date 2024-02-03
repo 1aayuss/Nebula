@@ -1,5 +1,3 @@
-import { Check } from "lucide-react";
-import { UserApiLimit } from "./../node_modules/.prisma/client/index.d";
 import { auth } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
 import { MAX_FREE_COUNTS } from "@/constants";
