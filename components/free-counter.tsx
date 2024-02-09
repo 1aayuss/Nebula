@@ -12,7 +12,7 @@ interface FreeCounterProps {
     apiLimitCount: number;
 };
 
-export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+export const FreeCounter = ({ apiLimitCount = MAX_FREE_COUNTS }: FreeCounterProps) => {
     const proModel = useProModel();
 
     const [mounted, setMounted] = useState(false);
@@ -31,9 +31,9 @@ export const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
                 <CardContent className='py-4'>
                     <div className='text-center text-sm text-white mb-4 space-y-2'>
                         <p>
-                            {apiLimitCount} / {MAX_FREE_COUNTS} Credits
+                            {apiLimitCount} Credits
                         </p>
-                        <Progress className='h-2' value={(apiLimitCount / MAX_FREE_COUNTS) * 100} />
+                        {/* <Progress className='h-2' value={(apiLimitCount / MAX_FREE_COUNTS) * 100} /> */}
                     </div>
                     <PremiumButton />
                 </CardContent>

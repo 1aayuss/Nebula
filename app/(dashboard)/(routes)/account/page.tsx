@@ -2,13 +2,13 @@ import { UserButton, UserProfile } from '@clerk/nextjs'
 
 import React from 'react'
 
-const SettingsPage = () => {
+const AccountPage = () => {
     return (
 
-        <div className='flex items-center justify-center mb-14 border-4'>
+        <div className='flex items-center justify-center mb-14'>
             <UserProfile />
         </div>
     )
 }
 
-export default SettingsPage
+export default AccountPage

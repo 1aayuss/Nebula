@@ -1,4 +1,4 @@
-import { CheckApiLimit, increaseApiLimit } from "@/lib/api_limit";
+import { CheckApiLimit, decreaseApiLimit } from "@/lib/api_limit";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     //   await incrementApiLimit();
     // }
 
-    increaseApiLimit();
+    decreaseApiLimit();
 
     return NextResponse.json(completion.choices[0].message);
   } catch (error) {

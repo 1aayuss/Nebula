@@ -26,31 +26,9 @@ export async function POST(req: Request) {
 
   const checkoutSession = event.data.object as Stripe.Checkout.Session;
 
-  // if (event.type === "checkout.session.completed") {
-  //   const subscription = await stripe.subscriptions.retrieve(
-  //     session.subscription as string
-  //   );
-
-  //   if (!session?.metadata?.userId) {
-  //     return new NextResponse("User id is required", { status: 400 });
-  //   }
-
-  //   await prismadb.userPayment.create({
-  //     data: {
-  //       userId: session?.metadata?.userId,
-  //       stripePaymentId: subscription.id,
-  //       stripeCustomerId: subscription.customer as string,
-  //       stripePriceId: subscription.items.data[0].price.id,
-  //       stripeAmount:
-  //     },
-  //   });
-  // }
-
   switch (event.type) {
     case "checkout.session.completed":
-      console.log("checkout.session.completed");
-
-      const paymentSucceeded = event.data.object;
+      // const checkoutSession = event.data.object;
 
       if (!checkoutSession?.metadata?.userId) {
         return new NextResponse("User id is required", { status: 400 });
@@ -58,18 +36,36 @@ export async function POST(req: Request) {
 
       console.log("got user id");
 
-      console.log(paymentSucceeded);
+      console.log(checkoutSession);
 
       await prismadb.userPayment.create({
         data: {
           userId: checkoutSession?.metadata?.userId,
-          stripePaymentId: paymentSucceeded.id,
-          stripeCustomerId: paymentSucceeded.customer as string,
-          stripePaymentIntent: paymentSucceeded.payment_intent as string,
-          stripeAmount: paymentSucceeded.amount_total,
+          stripeCustomerId: checkoutSession.customer_email as string,
+          stripePaymentId: checkoutSession.id,
+          stripeAmount: checkoutSession.amount_total,
           stripeCredits: parseInt(checkoutSession?.metadata?.credit),
+          stripePaymentIntent: checkoutSession.payment_intent as string,
         },
       });
+
+      const UserApiLimit = await prismadb.userApiLimit.findUnique({
+        where: {
+          userId: checkoutSession?.metadata?.userId,
+        },
+      });
+
+      if (UserApiLimit) {
+        await prismadb.userApiLimit.update({
+          where: {
+            userId: checkoutSession?.metadata?.userId,
+          },
+          data: {
+            count:
+              UserApiLimit.count + parseInt(checkoutSession?.metadata?.credit),
+          },
+        });
+      }
 
       console.log("Prisma db created");
 

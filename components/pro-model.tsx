@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useProModel } from '@/hooks/use-pro-model'
-import { Card } from '@/components/ui/card';
-import { Code2, ImageIcon, MusicIcon, VideoIcon, MessageSquare, Check, Zap, Rocket, MinusIcon, PlusIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { MinusIcon, PlusIcon } from 'lucide-react';
 import { Button } from './ui/button';
-import { number } from 'zod';
 import Image from 'next/image';
-import { Value } from '@radix-ui/react-select';
-import Logo from './logo';
 import axios from 'axios';
+import { unit_cost } from '@/constants';
 
 export const ProModel = () => {
 
@@ -22,7 +18,7 @@ export const ProModel = () => {
 
     useEffect(() => {
         const newCredits = Math.max(quantity * 10, 0);
-        const newCost = Math.max((quantity * 10) * 5 - 1, 0);
+        const newCost = Math.floor(Math.max((quantity * 10) * unit_cost, 0));
 
         setCredits(newCredits);
         setCost(newCost);
@@ -63,7 +59,7 @@ export const ProModel = () => {
             <DialogContent className=' w-full'>
                 <div className="mx-auto w-full max-w-lg">
                     <DialogHeader>
-                        <DialogTitle>Buy quantitys</DialogTitle>
+                        <DialogTitle>Buy Credits</DialogTitle>
                     </DialogHeader>
 
                     <div className="p-4 pb-0 space-y-4 flex flex-col items-center justify-center">

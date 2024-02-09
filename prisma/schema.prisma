@@ -23,9 +23,9 @@ model UserApiLimit {
 
 model UserPayment{
   id String @id @default(cuid())
-  userId String @unique
-  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
-  stripePaymentId String? @unique @map(name: "stripe_payment_id")
+  userId String
+  stripeCustomerId String? @map(name: "stripe_customer_id")
+  stripePaymentId String? @map(name: "stripe_payment_id")
   stripeAmount Int? @map(name: "stripe_amount")
   stripeCredits Int? @map(name: "stripe_credits")
   stripePaymentIntent String? @map(name:"stripe_payment_intent")

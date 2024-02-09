@@ -1,4 +1,4 @@
-import { CheckApiLimit, increaseApiLimit } from "@/lib/api_limit";
+import { CheckApiLimit, decreaseApiLimit } from "@/lib/api_limit";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       }
     );
 
-    await increaseApiLimit();
+    await decreaseApiLimit();
 
     return NextResponse.json(response);
   } catch (error) {

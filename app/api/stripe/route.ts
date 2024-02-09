@@ -5,7 +5,7 @@ import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { credit_adjustment, unit_amount } from "@/constants";
 
-const settingsUrl = absoluteUrl("/settings");
+const settingsUrl = absoluteUrl("/dashboard");
 
 export async function POST(request: Request) {
   try {

@@ -1,4 +1,4 @@
-import { CheckApiLimit, increaseApiLimit } from "@/lib/api_limit";
+import { CheckApiLimit, decreaseApiLimit } from "@/lib/api_limit";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       n: parseInt(amount, 10),
       size: resolution,
     });
-    await increaseApiLimit();
+    await decreaseApiLimit();
     return NextResponse.json(response.data);
   } catch (error) {
     console.log("[IMAGE_ERROR]", error);

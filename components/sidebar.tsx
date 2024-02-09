@@ -53,7 +53,7 @@ export const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
         {
             label: 'Account',
             icon: CircleUserRound,
-            href: '/settings',
+            href: '/account',
             color: "text-slate-100"
         }
     ];
