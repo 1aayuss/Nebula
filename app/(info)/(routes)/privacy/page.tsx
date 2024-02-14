@@ -42,7 +42,7 @@ const PrivacyPage = () => {
                     <div className='mb-4'>
                         <h4 className='text-md font-semibold'>Sharing Your Personal Information</h4>
                         <p className='text-md text-gray-400'>
-                            We do not share your Personal Information with third parties, except as necessary to provide you with the services offered on our website. For example, we use Stripe to power our online payment processing. We also use OpenAI's and Replicate's services to generate content based on prompts provided by users.
+                            We do not share your Personal Information with third parties, except as necessary to provide you with the services offered on our website. For example, we use Stripe to power our online payment processing. We also use OpenAI&apos;s and Replicate&apos;s services to generate content based on prompts provided by users.
                         </p>
                     </div>
 

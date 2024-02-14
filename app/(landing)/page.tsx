@@ -81,7 +81,7 @@ export default function LandingPage() {
                         <div className={cn("text-white text-3xl md:text-5xl px-4 md:px-0 text-center mb-2 font-bold space-y-1 sm:space-y-2", montserrat.className)}>
                             <div>Explore The Universe of AI With</div>
 
-                            <div className="inline-block">Nebula's AI Constellation <Separator />
+                            <div className="inline-block">Nebula&apos;s AI Constellation <Separator />
                             </div>
 
                         </div>
@@ -231,9 +231,9 @@ export default function LandingPage() {
 
                                     <div className="flex flex-col text-center sm:text-left ">
                                         <div className="text-gray-300">Hello there!</div>
-                                        <div className="text-2xl sm:text-3xl">I'm Ayush Makwana</div>
+                                        <div className="text-2xl sm:text-3xl">I&apos;m Ayush Makwana</div>
                                         <Separator />
-                                        <div className="text-sm text-gray-300 mt-2 ">A Passionate individual currently pursuing Bachelor's degree in Computer Science and Engineering, actively immersed in the world of Web and Cloud Technologies.</div>
+                                        <div className="text-sm text-gray-300 mt-2 ">A Passionate individual currently pursuing Bachelor&apos;s degree in Computer Science and Engineering, actively immersed in the world of Web and Cloud Technologies.</div>
                                     </div>
                                 </div>
                             </div>

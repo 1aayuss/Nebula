@@ -28,7 +28,7 @@ const PrivacyPage = () => {
                 <div className="mt-6 text-gray-200 text-md">
                     <div className='mb-4'>
                         <p>
-                            These Terms of Service ("Terms") govern your use of our website and services. Please read these Terms carefully before accessing or using our website.
+                            These Terms of Service govern your use of our website and services. Please read these Terms carefully before accessing or using our website.
                         </p>
                         <p>
                             By accessing or using any part of the site, you agree to be bound by these Terms.

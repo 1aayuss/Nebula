@@ -12,7 +12,7 @@ export const Empty = () => {
                 <Image alt="Empty" fill src="/empty.png" />
             </div>
             <p className='text-muted-foreground text-sm text-center'>
-                Let's begin your AI journey
+                Let&apos;s begin your AI journey
             </p>
         </div>
     )
