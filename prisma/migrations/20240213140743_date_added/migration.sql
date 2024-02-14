@@ -15,22 +15,25 @@ CREATE TABLE "UserPayment" (
     "userId" TEXT NOT NULL,
     "stripe_customer_id" TEXT,
     "stripe_payment_id" TEXT,
-    "stripe_price_id" TEXT,
     "stripe_amount" INTEGER,
     "stripe_credits" INTEGER,
+    "stripe_payment_intent" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserPayment_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "ContactInfo" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "first_name" TEXT,
+    "last_name" TEXT,
+    "email" TEXT,
+    "message" TEXT,
+
+    CONSTRAINT "ContactInfo_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "UserApiLimit_userId_key" ON "UserApiLimit"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "UserPayment_userId_key" ON "UserPayment"("userId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "UserPayment_stripe_customer_id_key" ON "UserPayment"("stripe_customer_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "UserPayment_stripe_payment_id_key" ON "UserPayment"("stripe_payment_id");

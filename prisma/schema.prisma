@@ -31,3 +31,12 @@ model UserPayment{
   stripePaymentIntent String? @map(name:"stripe_payment_intent")
   createdAt DateTime @default(now())
 }
+
+model ContactInfo {
+  id String @id @default(cuid())
+  createdAt DateTime @default(now())
+  FirstName String? @map(name:"first_name")
+  LastName String? @map(name:"last_name")
+  Email String? @map(name:"email")
+  Message String? @map(name:"message")
+}

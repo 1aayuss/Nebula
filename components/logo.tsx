@@ -7,9 +7,9 @@ import { Montserrat } from "next/font/google"
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] })
 const Logo = () => {
     return (
-        <Link href="/dashboard" className="flex items-center pl-3 mb-6">
+        <Link href="/dashboard" className="flex items-center px-3 mb-6 select-none">
             <div className="relative h-8 w-8 mr-2">
-                <Image fill alt="Logo" src="/Circle.svg" />
+                <Image fill alt="Logo" src="/DarkLogo.svg" />
             </div>
             <h1 className={cn("text-white text-2xl font-bold", montserrat.className)}>
                 Nebula

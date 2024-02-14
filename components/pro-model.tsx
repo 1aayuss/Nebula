@@ -1,11 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useProModel } from '@/hooks/use-pro-model'
-import { MinusIcon, PlusIcon } from 'lucide-react';
+import { MinusIcon, PlusIcon, IndianRupee } from 'lucide-react';
 import { Button } from './ui/button';
 import Image from 'next/image';
 import axios from 'axios';
 import { unit_cost } from '@/constants';
+import { Separator } from './ui/separator';
+import CreditsLogo from './creditsLogo';
+import { Montserrat } from "next/font/google"
+import { cn } from '@/lib/utils';
+
+const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
+
+
 
 export const ProModel = () => {
 
@@ -57,25 +65,21 @@ export const ProModel = () => {
     return (
         <Dialog open={proModel.isOpen} onOpenChange={proModel.onClose}>
             <DialogContent className=' w-full'>
-                <div className="mx-auto w-full max-w-lg">
+                <div className={cn("mx-auto w-full max-w-lg")}>
                     <DialogHeader>
-                        <DialogTitle>Buy Credits</DialogTitle>
+                        <DialogTitle className='font-bold'>Buy Credits</DialogTitle>
                     </DialogHeader>
 
                     <div className="p-4 pb-0 space-y-4 flex flex-col items-center justify-center">
 
-                        <div className='flex '>
-                            <div className="relative h-12 w-12">
-                                <Image fill alt="Logo" src="/Circle.svg" />
-                            </div>
-                        </div>
+                        <CreditsLogo />
 
-                        <div className='text-bold'>
+                        <div className='font-bold font-md'>
                             {credits} credits
                         </div>
 
-                        <div>
-                            {cost} Rs.
+                        <div className="bg-zinc-200 px-2 py-0.5 rounded-sm ">
+                            <div className="flex items-center font-bold"><IndianRupee strokeWidth={2} size={18} /> {cost}</div>
                         </div>
                         <div className="flex items-center justify-center space-x-4 ">
                             <Button
@@ -95,7 +99,7 @@ export const ProModel = () => {
                                 id="quantity-input"
                                 data-input-counter
                                 aria-describedby="helper-text-explanation"
-                                className="flex-2 p-2 text-center w-11 text-md font-bold tracking-tighter border-2 rounded-lg"
+                                className="flex-2 p-2 text-center w-11 text-md font-bold tracking-tighter border-2 rounded-lg [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
 
                                 value={quantity}
                                 onInput={(e) => {
@@ -116,18 +120,26 @@ export const ProModel = () => {
                                 <span className="sr-only">Increase</span>
                             </Button>
                         </div>
+
                     </div>
 
-                    <DialogFooter className='mt-6'>
+                    <DialogFooter className='mt-6 bottom-0'>
 
                         <DialogClose asChild className=''>
                             <Button className='border-2 bg-white text-black hover:bg-black/10 '>Cancel</Button>
                         </DialogClose>
                         <Button onClick={onSubscribe} className='w-full' disabled={quantity < 1}>Continue</Button>
 
+
                     </DialogFooter>
+
                 </div>
+                {/* <span
+                    className=" rounded-sm absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600"
+                ></span> */}
+                <Separator className='absolute inset-x-0 bottom-0 h-2 rounded-b-lg overflow-hidden' />
             </DialogContent>
+
         </Dialog>
     )
 }

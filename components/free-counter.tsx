@@ -7,6 +7,7 @@ import { MAX_FREE_COUNTS } from '@/constants';
 import { Rocket } from 'lucide-react';
 import { PremiumButton } from '@/components/premium-button';
 import { useProModel } from '@/hooks/use-pro-model';
+import CreditsLogo from '@/components/creditsLogo';
 
 interface FreeCounterProps {
     apiLimitCount: number;
@@ -29,7 +30,8 @@ export const FreeCounter = ({ apiLimitCount = MAX_FREE_COUNTS }: FreeCounterProp
         <div className='px-3'>
             <Card className='bg-white/10 border-0'>
                 <CardContent className='py-4'>
-                    <div className='text-center text-sm text-white mb-4 space-y-2'>
+                    <div className='text-center flex flex-col items-center text-sm text-white mb-4 space-y-2'>
+                        <CreditsLogo />
                         <p>
                             {apiLimitCount} Credits
                         </p>
