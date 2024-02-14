@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModel } from "@/hooks/use-pro-model"
+import { UserButton } from "@clerk/nextjs"
 
 function renderChatContentPart(part: ChatCompletionContentPart): string {
     if (typeof part === "string") {
@@ -77,16 +78,21 @@ const CodePage = () => {
     }
 
     return (
-        <div className="">
-            <Heading
-                title="Code Generation"
-                description='Generate code using descriptive text'
-                icon={Code2}
-                iconColor='text-green-600'
-                bgColor='bg-green-700/10'
-            />
-            <div className='px-4 lg:px-8'>
+        <div className="flex flex-col h-full">
+            <div className="relative flex items-start justify-between pt-0 px-6 md:p-5 lg:px-8">
 
+                <Heading
+                    title="Code Generation"
+                    description='Generate code using descriptive text'
+                    icon={Code2}
+                    iconColor='text-green-600'
+                    bgColor='bg-green-700/10'
+                />
+                <div className='hidden md:flex'>
+                    <UserButton afterSignOutUrl='/' />
+                </div>
+            </div>
+            <div className='px-6 md:px-4 lg:px-8 mt-4 md:mt-2'>
                 <div>
                     <Form {...form}>
                         <form
@@ -165,8 +171,8 @@ const CodePage = () => {
                     </div>
 
                 </div>
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
 

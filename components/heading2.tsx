@@ -14,7 +14,7 @@ interface HeadingProps {
 const Heading = ({ title, description, icon: Icon, iconColor, bgColor }: HeadingProps) => {
     return (
 
-        <div className='px-4 lg:px-8 flex items-center gap-x-3 mb-8'>
+        <div className='flex items-center gap-x-3'>
 
             <div className={cn("p-2 w-fit rounded-md", bgColor)}>
                 <Icon className={cn("w-8 h-8 md:w-12 md:h-12", iconColor)}></Icon>

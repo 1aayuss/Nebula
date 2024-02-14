@@ -55,7 +55,7 @@ const PrivacyPage = () => {
 
                     <div>
                         <p className='text-md text-gray-400'>
-                            For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at <a href="mailto:contact@example.com" className="text-blue-500">contact@example.com</a>.
+                            For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at <a href="mailto:nebula.help1@outlook.com" className="text-blue-500">nebula.help1@outlook.com</a>.
                         </p>
                     </div>
                 </div>

@@ -8,15 +8,15 @@ import React from 'react'
 const Dashboardlayout = async ({ children }: { children: React.ReactNode }) => {
     const apiLimitCount = await getApiLimitCount();
     return (
-        <div className='h-full relative  overflow-hidden'>
+        <div className='h-screen'>
             <div className='hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 '>
                 <Sidebar apiLimitCount={apiLimitCount} />
             </div>
-            <div className='h-screen md:ml-72 overflow-auto bg-slate-100 md:rounded-3xl md:border-white '>
-                <main>
-                    <Navbar />
+            <div className='h-full flex flex-col justify-between md:ml-72 bg-slate-100 md:border-white '>
+                <Navbar />
+                <div className='h-full'>
                     {children}
-                </main>
+                </div>
             </div>
         </div>
 

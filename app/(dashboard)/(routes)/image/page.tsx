@@ -19,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardFooter } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useProModel } from "@/hooks/use-pro-model"
+import { UserButton } from "@clerk/nextjs"
 
 const ImagePage = () => {
     const proModel = useProModel();
@@ -62,16 +63,22 @@ const ImagePage = () => {
 
 
     return (
-        <div className="">
-            <Heading
-                title="Image Generation"
-                description='Turn your propmpt into sn image'
-                icon={ImageIcon}
-                iconColor='text-pink-700'
-                bgColor='bg-pink-700/10'
-            />
-            <div className='px-4 lg:px-8s '>
+        <div className="flex flex-col h-full">
 
+            <div className="relative flex items-start justify-between pt-0 px-6 md:p-5 lg:px-8">
+                <Heading
+                    title="Image Generation"
+                    description="Out most advanced Image model."
+                    icon={ImageIcon}
+                    iconColor="text-red-500"
+                    bgColor="bg-red-500/10"
+                />
+                <div className='hidden md:flex'>
+                    <UserButton afterSignOutUrl='/' />
+                </div>
+            </div>
+
+            <div className='px-6 md:px-4 lg:px-8 mt-4 md:mt-2'>
                 <div>
                     <Form {...form}>
                         <form

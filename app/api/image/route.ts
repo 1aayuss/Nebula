@@ -31,11 +31,10 @@ export async function POST(req: Request) {
     }
 
     const freeTrial = await CheckApiLimit();
-    // const isPro = await checkSubscription();
 
     if (!freeTrial) {
       return new NextResponse(
-        "Free trial has expired. Please upgrade to pro.",
+        "Free trial has expired. Please buy more credits.",
         { status: 403 }
       );
     }

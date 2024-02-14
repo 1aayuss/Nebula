@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios"
 import * as z from "zod"
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Heading from '@/components/heading'
 import { useRouter } from "next/navigation";
 import { MessageSquare } from 'lucide-react'
@@ -18,39 +18,46 @@ import { cn } from "@/lib/utils"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModel } from "@/hooks/use-pro-model"
+import { UserButton } from "@clerk/nextjs"
 
-const ConversationPage = () => {
+const ConversationPage: React.FC = () => {
     const proModel = useProModel();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            prompt: ""
-        }
+            prompt: "",
+        },
     });
 
     const isLoading = form.formState.isSubmitting;
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         try {
-
             const userMessage: ChatCompletionMessageParam = {
                 role: "user",
                 content: values.prompt,
             };
-            const newMessages = [...messages, userMessage]
+            const newMessages = [...messages, userMessage];
             const response = await axios.post("/api/conversation", {
                 messages: newMessages,
-            })
+            });
 
             setMessages((current) => [...current, userMessage, response.data]);
 
             form.reset();
-
-
         } catch (error: any) {
-
             if (error?.response?.status === 403) {
                 proModel.onOpen();
             }
@@ -58,90 +65,104 @@ const ConversationPage = () => {
             router.refresh();
         }
     };
-    function renderChatContentPart(part: ChatCompletionContentPart): any {
-        throw new Error("Function not implemented.")
-    }
+
+    const renderChatContentPart = (part: ChatCompletionContentPart) => {
+        throw new Error("Function not implemented.");
+    };
 
     return (
-        <div className="">
-            <Heading
-                title="Conversation"
-                description='Out most advanced conversation model.'
-                icon={MessageSquare}
-                iconColor='text-violet-500'
-                bgColor='bg-violet-500/10'
-            />
-            <div className='px-4 lg:px-8'>
+        <div className="flex flex-col h-full">
 
-                <div>
-                    <Form {...form}>
-                        <form
-                            onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-xl border w-full p-2 px-3 md:px-6 focus-within:shadow-md grid grid-cols-12 gap-2 bg-white shadow-md">
-
-                            <FormField
-                                name="prompt"
-                                render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-10 md:p-0" >
-                                        <FormControl className="m-0 p-0">
-                                            <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-                                                disabled={isLoading}
-                                                placeholder="Talk to Nebula"
-                                                {...field} />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
-                            />
-
-                            <Button className="col-span-12 lg:col-span-2
-                            w-full" disabled={isLoading}>Generate</Button>
-
-                        </form>
-                    </Form>
+            <div className="relative flex items-start justify-between pt-0 px-6 md:p-5 lg:px-8">
+                <Heading
+                    title="Conversation"
+                    description="Out most advanced conversation model."
+                    icon={MessageSquare}
+                    iconColor="text-violet-500"
+                    bgColor="bg-violet-500/10"
+                />
+                <div className='hidden md:flex'>
+                    <UserButton afterSignOutUrl='/' />
                 </div>
+            </div>
 
-
-                <div className="space-y-4 mt-4">
-
-                    {
-                        isLoading && (
-                            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-                                <Loader />
-                            </div>
-                        )
-                    }
+            <div className=" px-4 lg:px-8 flex-grow overflow-auto ">
+                <div className="space-y-4 mt-4 ">
+                    {isLoading && (
+                        <div className="p-8 bottom-0 rounded-lg w-full flex items-center justify-center">
+                            <Loader />
+                        </div>
+                    )}
                     {messages.length === 0 && !isLoading && (
                         <div>
                             <Empty />
                         </div>
                     )}
 
-                    <div className="flex flex-col-reverse gap-y-4">
+                    <div className="flex flex-col gap-y-4">
                         {messages.map((msg) => (
-                            <div key={JSON.stringify(msg.content)}
-                                className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg", msg.role === "user" ? "bg-white-border border-black/10" : "bg - muted")}
+                            <div
+                                key={JSON.stringify(msg.content)}
+                                className={cn(
+                                    "p-8 w-full flex gap-x-8 rounded-lg",
+                                    msg.role === "user"
+                                        ? "bg-transparent flex items-end justify-end"
+                                        : "bg-gray-200 flex items-start"
+                                )}
                             >
-                                {msg.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                                {msg.role !== "user" ? <BotAvatar /> : null}
 
-                                <p className="text-sm">
-                                    {
-                                        Array.isArray(msg.content) ? (
-                                            msg.content.map((part) => renderChatContentPart(part))
-                                        ) : (
-                                            msg.content
-                                        )
-                                    }
+
+                                <p className="text-mg font-medium mt-1">
+                                    {Array.isArray(msg.content)
+                                        ? msg.content.map((part) => renderChatContentPart(part))
+                                        : msg.content}
                                 </p>
+                                {msg.role === "user" ? <UserAvatar /> : null}
 
                             </div>
                         ))}
-
                     </div>
 
+
+                    <div ref={messagesEndRef} />
                 </div>
             </div>
-        </div >
-    )
-}
 
-export default ConversationPage
+
+            <div className="px-4 lg:px-8 mb-8">
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="rounded-xl w-full p-2 px-3 md:px-6 focus-within:shadow-md grid grid-cols-12 gap-2 bg-white shadow-md"
+                    >
+                        <FormField
+                            name="prompt"
+                            render={({ field }) => (
+                                <FormItem className="col-span-12 lg:col-span-10 md:p-0">
+                                    <FormControl className="m-0 p-0">
+                                        <Input
+                                            className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                                            disabled={isLoading}
+                                            placeholder="Talk to Nebula"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+
+                        <Button
+                            className="col-span-12 lg:col-span-2 w-full"
+                            disabled={isLoading}
+                        >
+                            Generate
+                        </Button>
+                    </form>
+                </Form>
+            </div>
+        </div>
+    );
+};
+
+export default ConversationPage;

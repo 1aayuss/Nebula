@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton"
+import { UserButton } from "@clerk/nextjs";
 
 interface UserData {
     firstName: string;

@@ -15,6 +15,7 @@ import { Empty } from "@/components/empty"
 import { Loader } from "@/components/loader"
 import { cn } from "@/lib/utils"
 import { useProModel } from "@/hooks/use-pro-model"
+import { UserButton } from "@clerk/nextjs"
 
 const VideoPage = () => {
     const proModel = useProModel();
@@ -55,15 +56,20 @@ const VideoPage = () => {
 
 
     return (
-        <div className="">
-            <Heading
-                title="Video Generation"
-                description='Turn your prompt into video.'
-                icon={VideoIcon}
-                iconColor='text-orange-500'
-                bgColor='bg-orange-500/10'
-            />
-            <div className='px-4 lg:px-8 '>
+        <div className="flex flex-col h-full">
+            <div className="relative flex items-start justify-between pt-0 px-6 md:p-5 lg:px-8">
+
+                <Heading
+                    title="Video Generation"
+                    description='Turn your prompt into video.'
+                    icon={VideoIcon}
+                    iconColor='text-orange-500'
+                    bgColor='bg-orange-500/10'
+                /> <div className='hidden md:flex'>
+                    <UserButton afterSignOutUrl='/' />
+                </div>
+            </div>
+            <div className='px-6 md:px-4 lg:px-8 mt-4 md:mt-2'>
 
                 <div>
                     <Form {...form}>
