@@ -109,7 +109,7 @@ export default function DashboardPage() {
                         </>
                     )}
                 </div>
-                <div className="mb-8">
+                <div className="mb-4 md:mb-6 lg:mb-8">
                     <p className="text-muted-foreground font-light text-md md:text-xl text-center">
                         Explore our AI services
                     </p>

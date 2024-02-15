@@ -1,12 +1,12 @@
+'use client'
 import MarketingLogo from '@/components/MarketingLogo';
-import Logo from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const PrivacyPage = () => {
-
+    const router = useRouter();
     return (
         <div className='min-h-screen flex justify-center items-center bg-zinc-950'>
             <div className="relative flex flex-col overflow-hidden rounded-lg border border-gray-100 p-4 mx-4 my-6 sm:p-6 lg:p-8 pb-0 sm:pb-0 lg:pb-0 md:mx-4 lg:w-3/4 xl:w-1/2 ">
@@ -15,11 +15,9 @@ const PrivacyPage = () => {
                 ></span>
 
                 <div className="text-center">
-                    <Link href="/">
-                        <Button size={"sm"} className="absolute left-4 top-4 border cursor-pointer">
-                            <ArrowLeft size={20} className="text-gray-400" />
-                        </Button>
-                    </Link>
+                    <Button size={"sm"} className="absolute left-4 top-4 border cursor-pointer" onClick={() => router.back()}>
+                        <ArrowLeft size={20} className="text-gray-400" />
+                    </Button>
                     <h3 className="text-xl font-bold text-white sm:text-2xl md:text-3xl">
                         Terms of Service
                     </h3>

@@ -92,7 +92,7 @@ const ImagePage = () => {
                                         <FormControl className="m-0 p-0">
                                             <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                                 disabled={isLoading}
-                                                placeholder="Talk to Nebula"
+                                                placeholder="Enter your prompt"
                                                 {...field} />
                                         </FormControl>
                                     </FormItem>

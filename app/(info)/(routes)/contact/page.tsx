@@ -2,17 +2,15 @@
 import MarketingLogo from '@/components/MarketingLogo';
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, CheckCheck, CheckIcon } from 'lucide-react';
-import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { PrismaClient } from '@prisma/client';
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
-const prisma = new PrismaClient();
 
 
 const ContactPage = () => {
-
+    const router = useRouter();
     const { toast } = useToast()
 
     const [formData, setFormData] = useState({
@@ -65,11 +63,9 @@ const ContactPage = () => {
                 ></span>
 
                 <div className="text-center">
-                    <Link href="/">
-                        <Button size={"sm"} className="absolute left-4 top-4 border cursor-pointer">
-                            <ArrowLeft size={20} />
-                        </Button>
-                    </Link>
+                    <Button size={"sm"} className="absolute left-4 top-4 border cursor-pointer" onClick={() => router.back()}>
+                        <ArrowLeft size={20} />
+                    </Button>
                     <h3 className="text-xl font-bold text-white sm:text-2xl md:text-3xl">
                         Contact Us
                     </h3>
