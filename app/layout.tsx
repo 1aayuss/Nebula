@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nebula",
-  description: "AI platform",
+  description: "AI SaaS platform",
 };
 
 export default function RootLayout({
@@ -17,10 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <link rel='icon' href='/favicon.ico' />
+        </head>
         <body className={inter.className}>
           <ModelProvider />
-          {children}</body>
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
