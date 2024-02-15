@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import Heading from '@/components/heading'
 import { useRouter } from "next/navigation";
 import Image from "next/image"
-import { Download, ImageIcon, MessageSquare } from 'lucide-react'
+import { Download, Eye, ImageIcon, MessageSquare } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { FormSchema, amountOptions, resolutionOptions } from "./constants"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -70,8 +70,8 @@ const ImagePage = () => {
                     title="Image Generation"
                     description="Out most advanced Image model."
                     icon={ImageIcon}
-                    iconColor="text-red-500"
-                    bgColor="bg-red-500/10"
+                    iconColor="text-rose-500"
+                    bgColor="bg-rose-600/10"
                 />
                 <div className='hidden md:flex'>
                     <UserButton afterSignOutUrl='/' />
@@ -194,13 +194,10 @@ const ImagePage = () => {
 
 
                                 <CardFooter className="p-2">
-
                                     <Button onClick={() => window.open(src)} variant="secondary" className="w-full">
-
-                                        <Download className="h-4 w-4 mr-2" />
-                                        Download
+                                        <Eye className="h-4 w-4 mr-2" />
+                                        Preview
                                     </Button>
-
                                 </CardFooter>
 
                             </Card>

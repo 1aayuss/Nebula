@@ -16,11 +16,13 @@ import { unit_cost } from "@/constants";
 import { useProModel } from "@/hooks/use-pro-model";
 import { Separator } from "@/components/ui/separator"
 import CreditsLogo from "@/components/creditsLogo";
+import { useAuth } from "@clerk/nextjs";
 
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 const montserrat2 = Montserrat({ weight: "500", subsets: ["latin"] });
 export default function LandingPage() {
+    const { isSignedIn } = useAuth();
     const proModel = useProModel();
     const [loading, setLoading] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -87,7 +89,7 @@ export default function LandingPage() {
                         </div>
                         <div className="mt-12 ">
                             <Button size="lg" className="bg-gray-950 hover:bg-gray-900 ">
-                                <Link href="/sign-up">
+                                <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
                                     <div className="flex space-x-2">
                                         <div className="text-lg">Try Nebula For Free</div>
                                         <ArrowRight className="mt-1" size={22} strokeWidth={2} />
@@ -114,32 +116,32 @@ export default function LandingPage() {
                         <LandingCard
                             title="Talk to the smartest AI"
                             icon={MessageSquare}
-                            iconColor="text-violet-500"
-                            bgColor="bg-violet-500/10"
+                            iconColor="text-purple-400"
+                            bgColor="bg-purple-500/10"
                         />
                         <LandingCard
                             title="Image Generation"
                             icon={ImageIcon}
-                            iconColor="text-pink-700"
-                            bgColor="bg-pink-700/10"
+                            iconColor="text-rose-500"
+                            bgColor="bg-rose-500/10"
                         />
                         <LandingCard
                             title="Video Generation"
                             icon={VideoIcon}
-                            iconColor="text-orange-500"
-                            bgColor="bg-orange-500/10"
+                            iconColor="text-yellow-500"
+                            bgColor="bg-yellow-500/10"
                         />
                         <LandingCard
                             title="Music Generation"
                             icon={MusicIcon}
-                            iconColor="text-emerald-500"
-                            bgColor="bg-emerald-500/10"
+                            iconColor="text-blue-500"
+                            bgColor="bg-blue-500/10"
                         />
                         <LandingCard
                             title="Code Generation"
                             icon={Code2}
-                            iconColor="text-green-600"
-                            bgColor="bg-green-700/10"
+                            iconColor="text-green-500"
+                            bgColor="bg-green-500/10"
                         />
                     </div>
 
@@ -241,7 +243,7 @@ export default function LandingPage() {
                     </div>
                 </div>
                 <LandingFooter />
-            </div>
+            </div >
 
         </>
     );

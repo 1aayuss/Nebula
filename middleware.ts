@@ -20,15 +20,6 @@ export default authMiddleware({
     "/contact",
     "/terms",
   ],
-
-  afterAuth(auth, req) {
-    if (auth.userId && auth.isPublicRoute) {
-      const dash = new URL("/dashboard", req.url);
-
-      return NextResponse.redirect(dash);
-    }
-    return null;
-  },
 });
 
 export const config = {

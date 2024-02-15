@@ -91,7 +91,7 @@ export default function DashboardPage() {
                 {userData ? (
                     <>
                         <div className='p-2 w-fit rounded-md bg-sky-400/10 '>
-                            <Home className="w-8 h-8 md:w-12 md:h-12 stroke-sky-400"></Home>
+                            <Home className="w-8 h-8 md:w-12 md:h-12 stroke-sky-500"></Home>
                         </div>
 
                         <h1 className="text-2xl md:text-3xl font-bold">{greeting}, {userData.firstName}</h1>

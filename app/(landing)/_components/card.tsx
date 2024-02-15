@@ -17,7 +17,7 @@ const LandingCard: React.FC<LandingCardProps> = ({ title, icon: Icon, iconColor,
 
                 <div className={cn("h-full w-full flex flex-col items-center justify-evenly border-0 rounded-lg text-white text-center bg-zinc-950 p-0.5 ")}>
 
-                    <div className="p-1.5 m-1.5 bg-zinc-900 rounded-md">
+                    <div className={cn("p-1.5 m-1.5  rounded-md bg-zinc-900")}>
                         <Icon className={cn("w-8 h-8", iconColor)} />
                     </div>
                     <div className="text-sm m-2">{title}</div>

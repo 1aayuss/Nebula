@@ -27,8 +27,7 @@ function renderChatContentPart(part: ChatCompletionContentPart): string {
     } else if (Array.isArray(part)) {
         return part.map(subPart => renderChatContentPart(subPart)).join("");
     } else {
-        // Handle other cases if needed
-        return ""; // Return an empty string as a fallback
+        return "";
     }
 }
 
@@ -78,21 +77,21 @@ const CodePage = () => {
     }
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full bg-slate-100">
             <div className="relative flex items-start justify-between pt-0 px-6 md:p-5 lg:px-8">
 
                 <Heading
                     title="Code Generation"
                     description='Generate code using descriptive text'
                     icon={Code2}
-                    iconColor='text-green-600'
-                    bgColor='bg-green-700/10'
+                    iconColor='text-green-500'
+                    bgColor='bg-green-600/10'
                 />
                 <div className='hidden md:flex'>
                     <UserButton afterSignOutUrl='/' />
                 </div>
             </div>
-            <div className='px-6 md:px-4 lg:px-8 mt-4 md:mt-2'>
+            <div className='px-6 md:px-4 lg:px-8 mt-4 md:mt-2 bg-slate-100'>
                 <div>
                     <Form {...form}>
                         <form
@@ -136,10 +135,10 @@ const CodePage = () => {
                         </div>
                     )}
 
-                    <div className="flex flex-col-reverse gap-y-4">
+                    <div className="flex flex-col gap-y-4 ">
                         {messages.map((msg) => (
                             <div key={JSON.stringify(msg.content)}
-                                className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg", msg.role === "user" ? "bg-white-border border-black/10" : "bg - muted")}
+                                className={cn("p-4 w-full flex items-start gap-x-4 md:gap-x-8 rounded-lg", msg.role === "user" ? "bg-white-border border-black/10" : "bg - muted")}
                             >
                                 {msg.role === "user" ? <UserAvatar /> : <BotAvatar />}
 

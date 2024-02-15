@@ -18,37 +18,37 @@ export const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
             label: 'Dashboard',
             icon: Home,
             href: '/dashboard',
-            color: "text-sky-400"
+            color: "text-sky-500"
         },
         {
             label: 'Conversation',
             icon: MessagesSquare,
             href: '/conversation',
-            color: "text-purple-400"
+            color: "text-purple-500"
         },
         {
             label: 'Image Generation',
             icon: ImageIcon,
             href: '/image',
-            color: "text-rose-400"
+            color: "text-rose-500"
         },
         {
             label: 'Video Generation',
             icon: VideoIcon,
             href: '/video',
-            color: "text-amber-400"
+            color: "text-yellow-500"
         },
         {
             label: 'Music Generation',
             icon: MusicIcon,
             href: '/music',
-            color: "text-orange-400"
+            color: "text-blue-500"
         },
         {
             label: 'Code Generation',
             icon: Code2,
             href: '/code',
-            color: "text-green-400"
+            color: "text-green-500"
         },
         {
             label: 'Account',

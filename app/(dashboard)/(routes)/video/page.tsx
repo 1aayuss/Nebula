@@ -63,8 +63,8 @@ const VideoPage = () => {
                     title="Video Generation"
                     description='Turn your prompt into video.'
                     icon={VideoIcon}
-                    iconColor='text-orange-500'
-                    bgColor='bg-orange-500/10'
+                    iconColor='text-yellow-500'
+                    bgColor='bg-yellow-600/10'
                 /> <div className='hidden md:flex'>
                     <UserButton afterSignOutUrl='/' />
                 </div>

@@ -7,6 +7,8 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Menu } from 'lucide-react';
+import { Separator } from "@/components/ui/separator"
+
 
 const LandingNavbar: React.FC = () => {
 
@@ -30,9 +32,9 @@ const LandingNavbar: React.FC = () => {
                         </PopoverTrigger>
                         <PopoverContent>
                             <div className='flex flex-col justify-center items-center space-y-2 text-white'>
-                                <a className='cursor-pointer' onClick={() => handleScrollToSection('services-section')}>Services</a>
-                                <a className='cursor-pointer' onClick={() => handleScrollToSection('pricing-section')}>Pricing</a>
-                                <a className='cursor-pointer' onClick={() => handleScrollToSection('about-section')}>About</a>
+                                <a className='cursor-pointer w-fulltext-center' onClick={() => handleScrollToSection('services-section')}>Services</a>
+                                <a className='cursor-pointer w-full text-center' onClick={() => handleScrollToSection('pricing-section')}>Pricing</a>
+                                <a className='cursor-pointer w-full text-center' onClick={() => handleScrollToSection('about-section')}>About</a>
                             </div>
                         </PopoverContent>
                     </Popover>
@@ -47,7 +49,7 @@ const LandingNavbar: React.FC = () => {
             <div>
                 <div className='md:space-x-6 space-x-4 mt-1 md:text-md text-sm'>
                     <Link href="/sign-in" >Log In</Link>
-                    <Link href="/sign-up" className='border-2 md:px-2 md:py-1 py-0.5 px-1 rounded-md'>Sign Up</Link>
+                    <Link href="/sign-up" className='border-2 md:px-2 md:py-1 py-1 px-1 rounded-md'>Sign Up</Link>
                 </div>
             </div>
         </nav>

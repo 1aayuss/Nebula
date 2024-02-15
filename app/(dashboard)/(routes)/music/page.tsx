@@ -33,7 +33,6 @@ const MusicPage = () => {
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         try {
 
-            // setMusic("");
             const response = await axios.post("/api/music", values)
 
             setMusic(response.data.audio);
@@ -63,8 +62,8 @@ const MusicPage = () => {
                     title="Music Generation"
                     description='Turn your prompt into music.'
                     icon={MusicIcon}
-                    iconColor='text-emerald-500'
-                    bgColor='bg-emerald-500/10'
+                    iconColor='text-blue-500'
+                    bgColor='bg-blue-600/10'
                 />
                 <div className='hidden md:flex'>
                     <UserButton afterSignOutUrl='/' />

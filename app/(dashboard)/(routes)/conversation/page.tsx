@@ -4,7 +4,7 @@ import * as z from "zod"
 import React, { useEffect, useRef, useState } from 'react'
 import Heading from '@/components/heading'
 import { useRouter } from "next/navigation";
-import { MessageSquare } from 'lucide-react'
+import { MessageSquare, SendHorizontal } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { FormSchema } from "./constants"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -78,8 +78,8 @@ const ConversationPage: React.FC = () => {
                     title="Conversation"
                     description="Out most advanced conversation model."
                     icon={MessageSquare}
-                    iconColor="text-violet-500"
-                    bgColor="bg-violet-500/10"
+                    iconColor="text-purple-500"
+                    bgColor="bg-purple-600/10"
                 />
                 <div className='hidden md:flex'>
                     <UserButton afterSignOutUrl='/' />
@@ -88,6 +88,32 @@ const ConversationPage: React.FC = () => {
 
             <div className=" px-4 lg:px-8 flex-grow overflow-auto ">
                 <div className="space-y-4 mt-4 ">
+
+
+                    <div className="flex flex-col gap-y-4">
+                        {messages.map((msg) => (
+                            <div
+                                key={JSON.stringify(msg.content)}
+                                className={cn(
+                                    "p-4 md:p-8 w-full flex gap-x-4 md:gap-x-8 rounded-lg",
+                                    msg.role === "user"
+                                        ? "bg-transparent flex items-end justify-end"
+                                        : "bg-gray-200 flex items-start"
+                                )}
+                            >
+                                {msg.role !== "user" ? <BotAvatar /> : null}
+
+
+                                <p className={cn("text-sm md:text-md font-medium", msg.role === "user" ? "mb-1.5" : "mt-1.5")}>
+                                    {Array.isArray(msg.content)
+                                        ? msg.content.map((part) => renderChatContentPart(part))
+                                        : msg.content}
+                                </p>
+                                {msg.role === "user" ? <UserAvatar /> : null}
+
+                            </div>
+                        ))}
+                    </div>
                     {isLoading && (
                         <div className="p-8 bottom-0 rounded-lg w-full flex items-center justify-center">
                             <Loader />
@@ -98,31 +124,6 @@ const ConversationPage: React.FC = () => {
                             <Empty />
                         </div>
                     )}
-
-                    <div className="flex flex-col gap-y-4">
-                        {messages.map((msg) => (
-                            <div
-                                key={JSON.stringify(msg.content)}
-                                className={cn(
-                                    "p-8 w-full flex gap-x-8 rounded-lg",
-                                    msg.role === "user"
-                                        ? "bg-transparent flex items-end justify-end"
-                                        : "bg-gray-200 flex items-start"
-                                )}
-                            >
-                                {msg.role !== "user" ? <BotAvatar /> : null}
-
-
-                                <p className="text-mg font-medium mt-1">
-                                    {Array.isArray(msg.content)
-                                        ? msg.content.map((part) => renderChatContentPart(part))
-                                        : msg.content}
-                                </p>
-                                {msg.role === "user" ? <UserAvatar /> : null}
-
-                            </div>
-                        ))}
-                    </div>
 
 
                     <div ref={messagesEndRef} />
@@ -156,7 +157,8 @@ const ConversationPage: React.FC = () => {
                             className="col-span-12 lg:col-span-2 w-full"
                             disabled={isLoading}
                         >
-                            Generate
+                            Send
+                            <SendHorizontal size={18} className="ml-1.5" />
                         </Button>
                     </form>
                 </Form>

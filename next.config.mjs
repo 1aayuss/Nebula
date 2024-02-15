@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["oaidalleapiprodscus.blob.core.windows.net"],
-    domains: ["img.clerk.com"],
+    domains: [
+      "googleusercontent.com",
+      "oaidalleapiprodscus.blob.core.windows.net",
+      "cdn.openai.com",
+    ],
   },
 };
 
