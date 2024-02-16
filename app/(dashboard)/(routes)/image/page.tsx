@@ -63,7 +63,7 @@ const ImagePage = () => {
 
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full bg-slate-100">
 
             <div className="relative flex items-start justify-between pt-0 px-6 md:p-5 lg:px-8">
                 <Heading

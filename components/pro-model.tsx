@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useProModel } from '@/hooks/use-pro-model'
-import { MinusIcon, PlusIcon, IndianRupee } from 'lucide-react';
+import { MinusIcon, PlusIcon, IndianRupee, AlertTriangle, Info } from 'lucide-react';
 import { Button } from './ui/button';
 import Image from 'next/image';
 import axios from 'axios';
@@ -125,18 +125,21 @@ export const ProModel = () => {
 
                     <DialogFooter className='mt-6 bottom-0'>
 
-                        <DialogClose asChild className=''>
+                        <DialogClose asChild className='mt-2 sm:mt-0'>
                             <Button className='border-2 bg-white text-black hover:bg-black/10 '>Cancel</Button>
                         </DialogClose>
                         <Button onClick={onSubscribe} className='w-full' disabled={quantity < 1}>Continue</Button>
 
-
                     </DialogFooter>
-
                 </div>
-                {/* <span
-                    className=" rounded-sm absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600"
-                ></span> */}
+
+                <div className='bg-amber-100 text-black rounded-md px-4 py-2 flex items-start'>
+                    <Info size={2} strokeWidth={2} className='h-4 w-4 mr-2 mt-0.5 flex-shrink-0' />
+                    <div className='text-sm font-medium'>
+                        The Payment System is currently in Test mode, thus no Live Transactions are being processed at this time.
+                    </div>
+                </div>
+
                 <Separator className='absolute inset-x-0 bottom-0 h-2 rounded-b-lg overflow-hidden' />
             </DialogContent>
 
