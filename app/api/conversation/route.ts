@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     const completion = await openai.chat.completions.create({
       messages,
-      model: "gpt-4-turbo",
+      model: "gpt-3.5-turbo",
     });
 
     await decreaseApiLimit();
